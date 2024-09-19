@@ -1,7 +1,6 @@
 ---
-{"dg-publish":true,"permalink":"/블로그/Docker_Springboot_환경설정_개선기/","tags":["gardenEntry"],"created":"2024-08-13T14:39:14.236+09:00"}
+{"dg-publish":true,"permalink":"/블로그/Docker_Springboot_환경설정_개선기/","created":"2024-08-13T14:39:14.236+09:00"}
 ---
-
 
 # 문제 상황
 ### Dockerfile
