@@ -59,19 +59,27 @@
 		- 하지만 워낙 메모리 소모가 큰 작업이고, 여유 디스크 공간도 많이 필요한 작업이어서   `osrm-extract`에는 14시간, `osrm-partition`에는 6시간, `osrm-contract`에는 4시간이 소요됐다.
 - #### C++(M2 Air)
 	- 속도가 너무 느리고 ==알고리즘을 수정할때마다 다시 빌드를 해야해서 프리티어로 작업하기에는 한계가 있었다.== 그래서 16GB 메모리를 가진 M2 Air에서 OSRM을 실행하여 뽀송길에 적합한 알고리즘을 개발한 후, 이를 우분투에서 실행하기로 결정했다.
-	- ##### 패키지 설치
+	- ##### 1. 패키지 설치
 		```
 		brew install boost git cmake libzip libxml2 lua tbb ccache pkg-config
 		brew install GDAL
 		```
-	- ##### 실행(우분투 환경과 동일)
+	- ##### 2. 빌드(우분투 환경과 동일)
+		```
+		mkdir -p build
+		cd build
+		cmake .. -DCMAKE_BUILD_TYPE=Release
+		cmake --build .
+		sudo cmake --build . --target install
+		```
+	- ##### 3. 실행(우분투 환경과 동일)
 	    ```
 		osrm-extract seoul.osm.pbf -p profiles/foot.lua
 		osrm-partition seoul.osm
 		osrm-contract seoul.osrm
 		osrm-routed seoul.osm --port 8891
 	    ```
-	    - 전처리 후 실행 단계까지 걸리는 시간이 10분정도로 크게 단축됐다.
+	    - 전처리 후 실행 단계까지 ==걸리는 시간이 10분정도==로 크게 단축됐다.
 ### 3. Lua Profile 
 - 서울시 OSM을 만들고, C++로 OSRM을 실행하는데까지 많은 노력과 시간을 쏟았지만, 알고리즘을 수정하기 위해 C++ 코드를 변경해야 한다고 생각했던 것과는 달리, ==Lua로 작성된 Profile을 수정하는 것만으로도 충분했다.==
 - [[뽀송길/프로젝트 진행 중 겪은 문제/뽀송_가중치_설정_과정\|뽀송_가중치_설정_과정]]을 거쳐 foot.lua를 수정했다.
