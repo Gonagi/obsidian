@@ -35,11 +35,11 @@
 		```
 		- 빌드 단계를 진행할 때 다음과 같은 오류가 발생했다.
 			- 오류 1 : `-- Could NOT find Doxygen (missing: DOXYGEN_EXECUTABLE) CMake Error: The following variables are used in this project, but they are set to NOTFOUND. Please set them or make sure they are set and tested correctly in the CMake files: TBB_INCLUDE_DIR`
-			- 오류 2 : `Scanning dependencies of target EXTRACTOR [  0%] Building CXX object CMakeFiles/EXTRACTOR.dir/src/extractor/compressed_edge_container.cpp.o[  2%] Building CXX object CMakeFiles/EXTRACTOR.dir/src/extractor/edge_based_graph_factory.cpp.o/srv/osrm/osrm-backend/src/extractor/edge_based_graph_factory.cpp:35:10: fatal error: tbb/parallel_pipeline.h: No such file or directory 35 | #include`
+			- 오류 2 : `Scanning dependencies of target EXTRACTOR [  0%] Building CXX object CMakeFiles/EXTRACTOR.dir/src/extractor/compressed_edge_container.cpp.o[  2%] Building CXX object CMakeFiles/EXTRACTOR.dir/src/extractor/edge_based_graph_factory.cpp.o/srv/osrm/osrm-backend/src/extractor/edge_based_graph_factory.cpp:35:10: fatal error: tbb/parallel_pipeline.h: No such file or directory 35 | # include`
 		- `CMake가` `Doxygen과` `TBB(Template-Based Library)`를 찾지 못한 오류였고, 다음과 같이 필요한 패키지를 설치했다.
 			- `sudo apt install Doxygen libtbb-dev`
 		- 하지만 여전히 `TBB`관련 오류가 발생했다.
-			- 오류 3 : `/osrm/osrm-backend/src/extractor/edge_based_graph_factory.cpp:35:10: fatal error: tbb/parallel_pipeline.h: No such file or directory  35 | #include <tbb/parallel_pipeline.h>  | ^~~~~~~~~~~~~~~~~~~~~~~~~  compilation terminated.  make[2]: *** [CMakeFiles/EXTRACTOR.dir/build.make:90: CMakeFiles/EXTRACTOR.dir/src/extractor/edge_based_graph_factory.cpp.o] Error 1  make[1]: *** [CMakeFiles/Makefile2:236: CMakeFiles/EXTRACTOR.dir/all] Error 2  make: *** [Makefile:156: all] Error 2`
+			- 오류 3 : `/osrm/osrm-backend/src/extractor/edge_based_graph_factory.cpp:35:10: fatal error: tbb/parallel_pipeline.h: No such file or directory  35 | # include <tbb/parallel_pipeline.h>  | ^~~~~~~~~~~~~~~~~~~~~~~~~  compilation terminated.  make[2]: *** [CMakeFiles/EXTRACTOR.dir/build.make:90: CMakeFiles/EXTRACTOR.dir/src/extractor/edge_based_graph_factory.cpp.o] Error 1  make[1]: *** [CMakeFiles/Makefile2:236: CMakeFiles/EXTRACTOR.dir/all] Error 2  make: *** [Makefile:156: all] Error 2`
 		- 이러한 TBB 관련 오류를 해결하기 위해 구글링 하다 GitHub Issues에서 관련 질문을 발견하고 해당  패치를 적용해서 해결했다.([링크](https://github.com/Project-OSRM/osrm-backend/issues/6497))![](https://i.imgur.com/c759xGL.png)
 			- `wget -O patch-6497-fix-tbbparallelpipeline.patch https://patch-diff.githubusercontent.com/raw/Project-OSRM/osrm-backend/pull/6493.patch
 			- `patch -p1 < patch-6497-fix-tbbparallelpipeline.patch`
