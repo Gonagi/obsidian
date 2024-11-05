@@ -66,6 +66,9 @@
 ### 비간접적
 - `Stream`은 `non-thread-safe`한 컬렉션인 `ArrayList`도 집계 연산을 병렬적으로 처리할 수 있게 해준다.
 - 집계 연산의 병렬적 처리는 `Stream Pipeline`을 실행하는 동안 데이터 소스와의 간섭을 방지할 수 있는 경우에만 가능하다.
+- `iterator()`, `spliterator()`을 제외하고, 종단연산이 실행될 때 연산이 실행되며. 종단 연산이 끝날 때 `Stream`의 실행 끝난다.
+- 간섭을 방지한다는 것은 `Stream Pipeline`이 실행되는 동안 데이터가 전혀 수정되지 않는 것을 뜻한다.
+- 소스가 변경되면 안되는 일반적인 `Stream`와 달리 ==동시성 컬렉션(`Concurrent collections`)을 소스로 사용하는 `Stream`은 여러 스레드가 동시에 데이터를 수정할 수 있는 환경에서도 안전하게 작동==할 수 있도록 설계되었다.
 ---
 [공식문서, Package java.util.stream](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/package-summary.html)
 [wlsdl00 (2023.11) Stream이란? with 공식문서](https://gaebalog.tistory.com/entry/Java-Stream%EC%9D%B4%EB%9E%80)
