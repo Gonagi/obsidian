@@ -92,7 +92,7 @@
 ## OS와 Kernel에 대한 두 가지 관점
 ### OS == Kernel
 ### OS == Kernel + GUI + Library
-- #### Kernel                                                           ![|400](https://i.imgur.com/UWeQ3dW.png)
+- #### Kernel                                                                                   ![|400](https://i.imgur.com/UWeQ3dW.png)
 	- 운영체제의 핵심 부분으로, 자원 할당, 하드웨어 인터페이스(스케줄링을 어떻게 할것인가), 보안(보안 단계를 어떻게 할것인가) 등을 담당한다.
 	- C, C++, 어셈블리어 코드로 이루어져 있다.
 	- ##### 흐름
@@ -107,12 +107,12 @@
 		4. 결과 반환
 		    - 장치 드라이버는 작업 결과를 커널로 전달.
 		    - 커널은 해당 결과를 어플리케이션으로 반환.
-	- ### GUI
-		- 그래픽 사용자 인터페이스
-			- iOS, Android
-	- ### Library
-		- 자주 사용되는 함수들의 집합
-			- libc, win32.dll
+- #### GUI
+	- 그래픽 사용자 인터페이스
+		- iOS, Android
+- #### Library
+	- 자주 사용되는 함수들의 집합
+		- libc, win32.dll
 ## Relation of Hardware, OS, and Application
 ![|400](https://i.imgur.com/gJ9iN6c.png)
 
