@@ -92,7 +92,8 @@
 ## OS와 Kernel에 대한 두 가지 관점
 ### OS == Kernel
 ### OS == Kernel + GUI + Library
-- #### Kernel                                                                                   ![|400](https://i.imgur.com/UWeQ3dW.png)
+- #### Kernel                                                                                  
+	![|400](https://i.imgur.com/UWeQ3dW.png)
 	- 운영체제의 핵심 부분으로, 자원 할당, 하드웨어 인터페이스(스케줄링을 어떻게 할것인가), 보안(보안 단계를 어떻게 할것인가) 등을 담당한다.
 	- C, C++, 어셈블리어 코드로 이루어져 있다.
 	- ##### 흐름
