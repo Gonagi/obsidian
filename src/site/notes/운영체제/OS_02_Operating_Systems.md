@@ -109,25 +109,6 @@
 ### 필요에 따라서 Job들 간의 Orderly Execution이 필요
 - 동기화, Deadlock
 ---
-# MultiProgramming / Multitasking / MultiProcessing / MultiThreading
-## MultiProgramming
-### 여러 프로그램을 메모리에 동시에 적재하여 CPU 사용률을 높이는 기법
-- 동시성
-## MultiTasking
-### 운영체제가 여러 작업을 짧은 시간 단위로 번갈아가며 실행하여 동시에 수행되는 것처럼 보이게 하는 기법
-- 동시성
-## MultiProcessing
-### 두 개 이상의 프로세서나 코어를 활용하여 여러 작업을 병렬로 처리하는 시스템
-- 병렬성
-- 각 프로세스가 독립된 메모리를 사용
-## MultiThreading
-### 하나의 프로세스 내에서 여러 스레드를 생성하여 동시에 여러 작업을 수행하는 기법
-- 동시성(싱글 코어 멀티 쓰레드), 병렬성(멀티 코어 멀티 쓰레드)
-- 메모리와 자원을 공유하며 동작
-## 연속성, 동시성, 병렬성
-![](https://i.imgur.com/rUFMeD3.png)
-
----
 # 출처
 - 숭실대학교 공영호 교수님 운영체제
 - [ohohgami (2006.04.25) 게임으로 보는 PC의 역사](https://www.gamemeca.com/view.php?gid=35993)
