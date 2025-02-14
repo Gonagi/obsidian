@@ -70,8 +70,11 @@
 	- 대기열에 있는 메모리의 모든 페이지를 추적한다.
 	- 메모리 내에 가장 오래있었던 페이지를 교체 
 	- FIFO 큐를 이용하여 구현한다.                                    
-- #### Optimal Page replacement                               ![|400](https://i.imgur.com/wjjUQuE.png)
+- #### Optimal Page replacement
+  ![|400](https://i.imgur.com/wjjUQuE.png)
 	- 가장이상적인 교체 알고리즘이지만 불가능함
 	- 다른 교체 알고리즘을 분석하는 벤치마크 기능을 한다.           
-- #### LRU(Least Recently Used)                         ![|400](https://i.imgur.com/ZJYQin0.png)
-- #### MRU(Most Recently Used)                         ![|400](https://i.imgur.com/CqICtUP.png)
+- #### LRU(Least Recently Used)
+  ![|400](https://i.imgur.com/ZJYQin0.png)
+- #### MRU(Most Recently Used)
+  ![|400](https://i.imgur.com/CqICtUP.png)
