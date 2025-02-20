@@ -9,6 +9,7 @@
 - Source 코드를 Compile하여 Object File을 만들고, Linker로 Executable File을 만든 뒤, 우리가 사용하는 하드웨어(Memory)에 적재시켜 Process화 한다.
 ### Linker
 - 링킹 과정에서 라이브러리 파일과 오브젝트 파일에 있는 함수 정의와 전역 변수의 위치를 순차적으로 조사한 후, 이 정보를 테이블에 저장하고, 해당 주소들을 함수 호출 코드에 삽입합니다.
+  ![](https://i.imgur.com/lc3hdrw.png)
 ## Object Files
 ### Relocatable Object File(.o)
 - Compile-time에 생성되는 바이너리 코드와 데이터로 이루어진 파일
@@ -16,8 +17,7 @@
 ### Executable Object File : 실행파일
 - 메모리에 직접 로딩되어 실행될 수 있는 바이너리 코드와 데이터로 이루어진 파일
 ### Shared Object File (.so)
-- Load-time이나 Run-time에 동적으로 메모리에 로드되고 링크될 수 있는 타입의 재비치 가능한 오브젝트 파일
-![](https://i.imgur.com/lc3hdrw.png)
+- Load-time이나 Run-time에 동적으로 메모리에 로드되고 링크될 수 있는 타입의 재배치 가능한 오브젝트 파일
 ## Object File Format
 - COFF(Common Object FIle format) : System V 계열 초기 ==Unix==에서 사용
 - PE(Portable Executable) : ==Windows== NT계열에서 사용하는 COFF의 변종
