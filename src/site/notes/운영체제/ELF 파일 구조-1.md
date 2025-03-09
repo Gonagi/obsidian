@@ -77,7 +77,6 @@
 ### Symbol Resolution - 1
 ![](https://i.imgur.com/L6xKOUZ.png)
 - 지역 변수는 해당 블록에서만 유효하고 다른 파일이나 함수에서 참조할 수 없으니 Symbol이 아니다.
-- 함수 선언 != 함수 → 함수 선언은 Symbol이 아니다.
 - Strong 심볼인 `add`가 두 파일에서 존재하므로 링킹을 하면 에러가 난다.
 ### Symbol Resolution - 2
 ![](https://i.imgur.com/4YNy4vE.png)
