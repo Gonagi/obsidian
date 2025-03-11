@@ -19,11 +19,11 @@
 		- 심볼들의 주소가 상대적인 값으로 표현되어 있음(ex, 시작 주소로부터 26바이트 지점)
 ### Linker
 - 관련된 ==여러 Object 파일==들과 ==라이브러리들을 연결==하여, ==메모리로 로드 될 수 있는 하나의 Executable로 변환==
-- #### Execitable(e.g., exe file)
+- #### Executable(e.g., exe file)
 	- 특정한 환경(OS)에서 수행될 수 있는 파일
 	- 프로세스로의 변환을 위한 Header, 작업 내용인 Text, 필요한 데이터인 Data를 포함한다.
 	- Absolute Addresses로 표현
-- 컴파일러와 링커는 결과물이 수행되 OS와 CPU에 따라 ==다른 형태의 파일==을 만든다.
+- 컴파일러와 링커는 결과물이 수행될 OS와 CPU에 따라 ==다른 형태의 파일==을 만든다.
 ### Loader
 - ==Executable을 실제 메모리에 올려주는 역할==을 담당하는 운영 체제의 일부
 - #### 동작 과정
@@ -37,7 +37,7 @@
 ### Relocatable Object File(.o)
 - Compile-time에 생성되는 바이너리 코드와 데이터로 이루어진 파일
 - 다른 재배치 가능한 오브젝트 파일과 통합 가능
-### Executable Object File : 실행파일
+### Executable Object File : 실행 가능한 파일
 - 메모리에 직접 로딩되어 실행될 수 있는 바이너리 코드와 데이터로 이루어진 파일
 ### Shared Object File (.so)
 - Load-time이나 Run-time에 동적으로 메모리에 로드되고 링크될 수 있는 타입의 재배치 가능한 오브젝트 파일
