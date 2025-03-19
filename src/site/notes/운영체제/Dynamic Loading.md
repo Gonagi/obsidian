@@ -72,10 +72,10 @@
 8. `do_map()` : 각 섹션(TEXT, DATA, BSS등)을 메모리에 적재
 9. `start_thread()`: EIP(명령어 포인터)를 ELF 실행 파일의 진입점(Entry Point)로 설정
 	- 커널 모드에서 유저 모드로 전환
-10. **동적 링커(`ld.so`) 실행 및 공유 라이브러리 로딩 시작
+10. **동적 링커(`ld.so`) 실행 및 공유 라이브러리 로딩 시작**
 	- ELF 실행 파일의 `.dynamic` 섹션을 참조하여 필요한 공유 라이브러리를 로드 시작
 	- 11~12 반복
-11. **`_dl_map_object()`를 호출하여 공유 라이브러리 매핑(1차 ping pong)
+11. **`_dl_map_object()`를 호출하여 공유 라이브러리 매핑(1차 ping pong)**
 	- 공유 라이브러리를 적절한 메모리 영역에 매핑함
 		![left|300](https://i.imgur.com/AzN4gws.png)
 12. **`dl_relocate_object()`를 호출하여 심볼 재배치 (2차 ping pong)**
@@ -84,6 +84,7 @@
 13. 모든 공유 라이브러리가 로드되면 `main()` 실행
 
 ![](https://i.imgur.com/hv6V0vO.png)
+
 14. 실행파일의 진입점 `_start()` 실행
 15. `__libc_start_main()`에서 실행 환경을 설정한 후 `main()` 호출
 16. `main()` 실행이 종료되면, `exit()`를 호출하여 프로그램 종료 과정 시작
