@@ -11,10 +11,10 @@
 # Dynamic Loading
 ![](https://i.imgur.com/vAkAKOg.png)
 ## 섹션 요소
-- `.interp` : 동적 링커(ld.so)의 full path 이름을 저장
+- `.interp` : 동적 링커(`ld.so`)의 full path 이름을 저장
 - `.plt` : 외부 참조 함수 이름 정보
 - `.got` : load-time에 ld.so가 재배치할 전역변수 주소
-- `.got.plt` : run-time에 ld.so.가 재배치 할 (.plt와 대응되는) 함수들의 실제 주소
+- `.got.plt` : run-time에 `ld.so`가 재배치 할 (.plt와 대응되는) 함수들의 실제 주소
 ## (RW-)를 (R--) + (RW-)로 재배치 하는 이유
 - 변경될 필요가 없는 영역은 Read-Only로 설정하고, 변경이 필요한 영역만 RW-로 유지하는 것이 더 안전하고 효율적인 방식이다.
 	- 보안 강화
@@ -26,8 +26,8 @@
 	- 실행 성능 최적화
 		- CPU 캐시 활용 최적화
 # Dynamic Linking: Lazy Binding
-- 함수 호출 시 ==함수 이름==만 존재하는 ==PLT(Procedure Linkage Table)==을 참조하면 해당 함수의 ==실제 주소==가 들어 있는 ==GOT(Global Offset Table)==로 연결되어 해당 함수 주소를 찾아가게 된다.
-- 그러나 동적 링킹 시에 GOT는 dynamic linker(ld.so) 호출 주소가 저장되어 있고, 해당 함수가 처음 호출될 때 ld.so가 실제 함수 주소를 찾아서 GOT 값을 업데이트한다. → ==Lazy Binding==
+- 함수 호출 시 ==함수 이름==만 존재하는 ==PLT==(Procedure Linkage Table)을 참조하면 해당 함수의 ==실제 주소==가 들어 있는 ==GOT==(Global Offset Table)로 연결되어 해당 함수 주소를 찾아가게 된다.
+- 그러나 동적 링킹 시에 GOT는 dynamic linker(`ld.so`) 호출 주소가 저장되어 있고, 해당 함수가 처음 호출될 때 `ld.so`가 실제 함수 주소를 찾아서 GOT 값을 업데이트한다. → ==Lazy Binding==
 ![](https://i.imgur.com/v6S7WyY.png)
 ---
 # Dynamic Loading
@@ -42,7 +42,6 @@
 5. `.interp` 섹션을 참조하여 동적 링커를 로딩
 	- `.interp`가 존재하므로 동적 링커가 실행되야 함
 6. 동적 링커가 `.dynamic`를 확인하여 필요한 모든 공유 라이브러리들(`libcalc.so`, `libc.so`)을 차례로 로딩
-	 - Lazy Binding 방식으로 GOT 업데이트(심볼 해석)
 7. 동적 링커가 (RW-) 세그먼트를 (R--, RW-)로 재배치
 	- 메모리 보호 및 공유 최적화
 ![](https://i.imgur.com/Q0H2id9.png)
