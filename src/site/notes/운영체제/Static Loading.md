@@ -2,9 +2,11 @@
 {"dg-publish":true,"permalink":"/운영체제/Static Loading/","created":"2025-03-19T00:32:26.510+09:00"}
 ---
 
+![|400](https://i.imgur.com/a14S6LO.png)
 - ==실행 전==에 모든 코드와 라이브러리를 메모리에 미리 로드하여 실행하는 방식
 - 심볼 테이블이 컴파일 시점에 완전히 해석되고, ==실행 시점에는 추가적인 심볼 해석 과정이 없음==
 ---
+# Static Loading
 ## Static Library 생성 후 링킹
 ![](https://i.imgur.com/v1sNtQy.png)
 ![](https://i.imgur.com/7qf9RJv.png)
@@ -57,3 +59,6 @@
 7. `do_map()` : 각 섹션(TEXT, DATA, BSS등)을 메모리에 적재
 8. `start_thread()`: EIP(명령어 포인터)를 ELF 실행 파일의 진입점(Entry Point)로 설정
 9. `main()` : 유저 영역에서 `sum-s` 실행
+---
+# 출처
+- 숭실대학교 이정현 교수님 시스템 보안

@@ -106,9 +106,7 @@
 	- 라이브러리를 올릴 때 보안 위협 우려(바꿔치기)
 ---
 # Loading
-![|400](https://i.imgur.com/asdKyVD.png)
-- 정적 로딩 :
-- 동적 로딩 : 
+![left|400](https://i.imgur.com/asdKyVD.png)
 ## [[운영체제/Static Loading\|Static Loading]]
 - ==실행 전==에 모든 코드와 라이브러리를 메모리에 미리 로드하여 실행하는 방식
 ## [[운영체제/Dynamic Loading\|Dynamic Loading]]
