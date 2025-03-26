@@ -49,7 +49,7 @@
 - 지역성을 고려하여 현재 시점으로부터 이전에 실행된 일정한 메모리 참조만을 working set으로 구별하고, 그 working set을 메모리에 할당한다.![](https://i.imgur.com/EJe3yQp.png)
 - working set 구간을 working set window라고 한다.
 	- ex) 지역성을 고려한 페이지의 개수를 6개로 하면 working set window는 6이 된다.
-- ![|400](https://i.imgur.com/RV9o2Y3.png)
+![left|400](https://i.imgur.com/RV9o2Y3.png)
 - working set에는 현재 프로세스가 실행될 떄 필요한 지역성에 해당하는 페이지만 들어있기 때문에 page fault를 최소화 할 수 있다. (==Page fault는 working set window가 이동할때만 발생한다.==)
 ### 쓰레싱(Thrashing)
 - Process의 실행 시간 중, Page Fault를 처리하는 시간이 Execution 시간보다 긴 상황
@@ -66,15 +66,16 @@
 - 페이징을 위한 슈퍼바이저 코드 영역, 보조기억장치 드라이버 영역, 입출력장치를 위한 데이터 버퍼 영역 등
 ### 페이지 교체 알고리즘
 - 시스템의 특정 요구 사항에 따라 적합한 알고리즘을 선택해야 한다.
-- #### FIFO(First-In First-Out)                             ![|400](https://i.imgur.com/mH4eLVo.png)
+- #### FIFO(First-In First-Out)                             
+  ![left|400](https://i.imgur.com/mH4eLVo.png)
 	- 대기열에 있는 메모리의 모든 페이지를 추적한다.
 	- 메모리 내에 가장 오래있었던 페이지를 교체 
 	- FIFO 큐를 이용하여 구현한다.                                    
 - #### Optimal Page replacement
-  ![|400](https://i.imgur.com/wjjUQuE.png)
+  ![left|400](https://i.imgur.com/wjjUQuE.png)
 	- 가장이상적인 교체 알고리즘이지만 불가능함
 	- 다른 교체 알고리즘을 분석하는 벤치마크 기능을 한다.           
 - #### LRU(Least Recently Used)
-  ![|400](https://i.imgur.com/ZJYQin0.png)
+  ![left|400](https://i.imgur.com/ZJYQin0.png)
 - #### MRU(Most Recently Used)
-  ![|400](https://i.imgur.com/CqICtUP.png)
+  ![left|400](https://i.imgur.com/CqICtUP.png)

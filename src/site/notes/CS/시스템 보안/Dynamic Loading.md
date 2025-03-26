@@ -14,6 +14,7 @@
 ![](https://i.imgur.com/v6S7WyY.png)
 # [[CS/시스템 보안/Dynamic Loading-3\|Dynamic Loading-3]] (Dynamic Linking : 심볼 해석)
 ![](https://i.imgur.com/qlXdh6s.png)
+
 ---
 # 출처
 - 숭실대학교 이정현 교수님 시스템 보안
