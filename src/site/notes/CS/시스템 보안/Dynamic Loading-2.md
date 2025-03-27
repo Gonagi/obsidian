@@ -45,9 +45,10 @@
 		- 메모리에 적재된 ==실제 동적 링커(ld.so) 주소==가 위치하고 있다.
 ![](https://i.imgur.com/AcALaae.png)
 - `0x00122a80`으로 jump하면 `_dl_runtime_resolve`가 실행된다. 
-	6. `_dl_fixup`(실제 함수 주소를 찾고 GOT를 업데이트하는 함수)가 실행된다.![left|](https://i.imgur.com/TR8AZO8.png)
-	- 라이브러리에 있는 `add`에 브레이크 포인트를 걸고 실행한다.
-	- 메모리 내 add 함수의 실제 위치는 `0x0012f41c`이다.
+	6. `_dl_fixup`(실제 함수 주소를 찾고 GOT를 업데이트하는 함수)가 실행된다.
+![](https://i.imgur.com/TR8AZO8.png)
+- 라이브러리에 있는 `add`에 브레이크 포인트를 걸고 실행한다.
+- 메모리 내 add 함수의 실제 위치는 `0x0012f41c`이다.
 ![](https://i.imgur.com/v92d6Ts.png)
 - `finish` 실행 → (현재 함수의 실행을 끝내고, 해당 함수가 return하는 시점까지 실행한 뒤 멈춘다.)
 7. 두번째 `add` 함수를 호출한다.
@@ -63,11 +64,10 @@
 ![](https://i.imgur.com/qlXdh6s.png)
 ### Dynamic Symbol Table: `.dynsym` 섹션
 - 심볼 이름, offset, 크기, 바인딩 정보 등이 저장되어 있다.(add, sub, printf 같은 함수 이름이 몇번째 항목인지, 해당 함수의 라이브러리 내부에서 offset(상대 주소)는 얼마인지)
-  ![Left|400](https://i.imgur.com/oOLY5UE.png)
+### Dynamic String Table: `.dynstr` 섹션
+- `.dynsym`의 항목이 가리키는 문자열 데이터(심볼 이름)이 저장되어 있다.  ![Left|400](https://i.imgur.com/oOLY5UE.png)
 	- 심볼 이름 : Dynamic String Table(`dynstr`)의 인덱스
 	- 1 엔트리 크기 == 16 바이트
-### Dynamic String Table: `.dynstr` 섹션
-- `.dynsym`의 항목이 가리키는 문자열 데이터(심볼 이름)이 저장되어 있다.
 ### Relocation for PLT : `.rel.plt` 섹션
 - PLT를 사용하는 함수 호출을 위해 재배치 정보가 있다.
 	- 어떤 GOT 슬롯을 수정해야 하는지, 어떤 `dynsym`에서 찾아야 하는지 알려준다.
