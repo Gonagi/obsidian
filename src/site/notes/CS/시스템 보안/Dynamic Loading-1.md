@@ -2,7 +2,7 @@
 {"dg-publish":true,"permalink":"/CS/시스템 보안/Dynamic Loading-1/","created":"2025-03-25T20:39:36.271+09:00"}
 ---
 
-# Dynamic Loading: 로딩 + 재배치
+# Dynamic Loader: 로딩 + 재배치
 ![](https://i.imgur.com/vAkAKOg.png)
 ## 섹션 요소
 - `.interp` : 동적 링커(`ld.so`)의 full path 이름을 저장
