@@ -3,13 +3,13 @@
 ---
 
 # Contents
-## OS에서의 커널 구조
-- ### Monolithic Kernel, Micro Kernel, Hypervisor
-- ### Hypervisor
-## Docker
-- ### 등장 배경
-- ### 특징
-- ### 장점
+- ## OS에서의 커널 구조
+	- ### Monolithic Kernel, Micro Kernel, Hypervisor
+	- ### Hypervisor
+- ## Docker
+	- ### 등장 배경
+	- ### 특징
+	- ### 장점
 ---
 # OS에서의 커널 구조
 ## Monolithic kernel, Micro kernel, Hypervisor

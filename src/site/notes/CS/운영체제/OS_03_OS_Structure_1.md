@@ -3,17 +3,17 @@
 ---
 
 # Contents
-## 1. System Structure
-## 2. OS Design Principle
-- ### Policy
-- ### Mechanism
-## 3. Methods for Operating System Desgin
-- ### Layering
-- ### Modularity
-## 4. Kernel Designs
-- ### Monolithic Kernel
-- ### Micro Kernel
-- ### Hypervisor
+- ## System Structure
+- ## OS Design Principle
+	- ### Policy
+	- ### Mechanism
+- ## Methods for Operating System Desgin
+	- ### Layering
+	- ### Modularity
+- ## Kernel Designs
+	- ### Monolithic Kernel
+	- ### Micro Kernel
+	- ### Hypervisor
 ---
 # 1. System Structure
 ## System Structure(시스템 구조)
