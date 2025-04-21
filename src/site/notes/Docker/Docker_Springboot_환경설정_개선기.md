@@ -242,3 +242,12 @@ pposonggil:
 Docker 컨테이너 안에서도 **자동 재시작되는** ==개발 환경==을 만들었다.
 - `docker-compose up -f docker-compose.dev.yml -d --build`로 컨테이너 실행 후 코드를 수정하면, 변경사항을 감지하여 재빌드하고 `.restart` 파일을 수정한다. 해당 파일이 트리거가 돼서 서버가 재시작된다.
 - Dockerfile의 `COPY . /usr/src/pposonggil` 때문에 이미지 크기가 늘어났지만, 매번 서버를 재시작 할 필요가 없어 편하다.
+---
+# 출처
+- [Dockerfile 내 RUN ./gradlew bootJar 실행시 'xargs not available' 에러](https://velog.io/@mj3242/Dockerfile-%EB%82%B4-RUN-.gradlew-bootJar-%EC%8B%A4%ED%96%89%EC%8B%9C-xargs-not-available-%EC%97%90%EB%9F%AC))
+- [도커파일-피드백](https://www.inflearn.com/community/questions/1169281/%EB%8F%84%EC%BB%A4%ED%8C%8C%EC%9D%BC-%ED%94%BC%EB%93%9C%EB%B0%B1)
+- [Gradle, Layered Jar 그리고 Dockerbuild 최적화](https://velog.io/@ssol_916/Gradle-Layered-Jar-%EA%B7%B8%EB%A6%AC%EA%B3%A0-Dockerbuild-%EC%B5%9C%EC%A0%81%ED%99%94)
+- [Spring Boot 3.2.X:JarLauncherPath](https://medium.com/viascom/spring-boot-3-2-x-jarlauncher-path-a3656f8e69b4)
+- [Reusing Docker Layers with Spring Boot](https://www.baeldung.com/docker-layers-spring-boot)
+- [spring boot 도커환경 auto reload 세팅](https://velog.io/@youngjun0627/spring-boot-%EB%8F%84%EC%BB%A4%ED%99%98%EA%B2%BD-auto-reload-%EC%84%B8%ED%8C%85)
+- [# docker spring boot live reload 개발 환경 구성(vs code)](https://velog.io/@jjh930301/docker-spring-%EA%B0%9C%EB%B0%9C-%ED%99%98%EA%B2%BD-%EA%B5%AC%EC%84%B1vs-code)
