@@ -9,7 +9,9 @@
 - ## 프로세스 생성 관리
 ---
 # 1. 프로그램이 만들어지는 과정
+
 ## [[CS/시스템 보안/ELF 파일 구조-1\|ELF 파일 구조-1]]
+
 ---
 # 2. Process State
 ## Porcess State
@@ -85,6 +87,7 @@
 		3. 다음에 실행될 process인 P1의 PCB를 참조해서 상태를 CPU에 복원한다.(**Context Restore**)
 ---
 ## Context Switch
+### 커널이 프로세스 실행 상태를 저장하고, 다른 프로세스를 불러오는 작업
 - ### Context
 	- the context of a process is represented in the **PCB**
 	- 모든 프로세스는 코드, 데이터, 스택의 주소 공간과 프로세스가 동작할 때의 레지스터 값 등의 ==context==를 가지고 있다.
@@ -97,12 +100,134 @@
 ---
 # 4. Process Creation
 ## process creation이란?
-- ### process descriptor
-- ### Linux Task(Process Task, Thread Task)
-- ### MultiProcess VS Multithread
-- ### Context Switching(SW / HW)
-	- #### S/W 방식![](https://i.imgur.com/7uZAPTP.png)
-	- #### H/W 방식![](https://i.imgur.com/SUBIo6U.png)
+![](https://i.imgur.com/vsiujUO.png)
+- 모든 프로세스는 code, data, stack의 주소 공간과 프로세스가 동작할 때의 레지스터 값 등의 **context**를 가지고 있다.
+- 커널 관점에서 프로세스 생성이란 context를 관리하기 위한 **process descriptor**를 의미한다.
+
+---
+## process descriptor
+### 운영체제에서는 process descriptor로 process를 관리한다.
+- state, pid, 레지스터, 메모리, 파일 정보등이 있다.
+- 리눅스에서는  **task_struct** 구조체로 process를 관리한다.
+  ![left|400](https://i.imgur.com/PELO70O.png)
+### PID만으로는 프로세스를 고유하게 식별하기 어렵다.
+- PID는 사용자 입장에서 프로세스를 식별하기 위한 **단순한 숫자 ID**일 뿐이며,  
+  프로세스가 종료되면 재사용될 수 있다.
+- 커널은 각 프로세스의 모든 정보를 담고 있는 **`task_struct`(process descriptor)를 통해  프로세스를 정확하게 식별하고 관리**한다.
+- 과거에는 `task_struct`를 배열 형태로 관리하며 **인덱스**로 접근하기도 했지만,  
+  현재는 주로 **포인터 기반의 연결 리스트 또는 해시 테이블**로 관리한다.
+---
+## Linux Task(Process Task, Thread Task)
+### Process == Task, Thread == Task (Linux)
+- 리눅스에서는 process, thread 모두 `task_struct`를 통해 관리한다.
+	- 따라서 리눅스에서는 process, thread라는 표현 대신 **task**라는 용어를 통일적으로 사용한다.
+### process descriptor를 ==PCB==(Process Control Block) 또는 ==TCB==(Thread Control Block)으로 부르기도 한다.
+![](https://i.imgur.com/4oqq6Ar.png)
+- 하나의 **process는 1개 이상의 thread**를 가질 수 있다.
+- 사용자 공간의 각 **thread는 커널 공간의 `task_struct`와 1:1로 매핑**된다.
+    - `task_struct`는 해당 **thread/process의 상태, 레지스터, 메모리, 파일 정보 등**을 담고 있는 **커널의 관리 구조체**이다.
+- thread의 수만큼 `task_struct`가 생성되고,  각각은 **커널 스케줄러가 관리하는 독립적인 task**가 된다.
+- **유저 스레드 간 전환**은 context switching을 통해 이뤄진다.
+- **커널 스레드 간 전환**의 경우:
+    - ==같은 커널 주소 공간 내에서 동작하므로==
+    - 상황에 따라 **full context switching 없이 최소한의 상태만 전환**할 수 있다.
+    - 따라서 **전환 오버헤드가 매우 작거나, 불필요한 경우도 있다.**
+---
+## MultiProcess VS Multithread
+### 멀티스레드는 주소 공간을 공유해 빠르지만 동기화 이슈가, 멀티프로세스는 독립성이 높지만 전환 비용이 크다.
+![](https://i.imgur.com/ju4hTxn.png)
+### Multiprocesses
+- 운영체제 관점에서의 실행흐름을 제어한다.
+- ==context switching==에 대한 부담이 크다.
+	- 완전히 다른 주소 공간으로 전환해야 하므로  페이지 테이블 교체, 캐시/TLB 플러시 등 부가 비용 발생
+- process간 데이터 교환이 불가능하다. (주소 공간이 다름)
+	-  데이터를 주고받기 위해 **IPC(Inter-Process Communication)** 필요  
+	    - 예: Pipe, Message Queue, Shared Memory, Socket 등
+### Multithreads
+- process 내에서의 실행 흐름을 제어한다.
+- ==context switching==에 대한 부담이 덜하다.
+	- 같은 프로세스 내이므로 주소 공간은 그대로  → 레지스터만 저장/복원하면 되므로 빠름
+- thread간 데이터 교환이 매우 쉽다.
+- 동기화 문제가 발생할 수 있다.(mutex, semaphore 필요)
+	![left|500](https://i.imgur.com/YWuq32p.png)
+---
+## Context Switching(SW / HW)
+### 리눅스/윈도우는 ==SW 기반 Context Switching==방식을 사용한다.
+![](https://i.imgur.com/3ucEW3w.png)
+### S/W 방식
+- 커널이 직접 프로세스 상태를 **task_struct(프로세스 디스크립터)** 에 저장하고 복원함
+- 전환 시에는 아래와 같은 과정이 수행됨:
+	  1. 현재 실행 중인 **프로세스 A의 레지스터 값, PC(Program Counter) 등**을 task_struct에 저장
+	  2. 다음에 실행할 **프로세스 B의 task_struct에 저장된 값**을 읽어와 CPU에 복원
+### H/W 방식
+- **Intel**에서  각 프로세스의 상태를 **TSS(Task State Segment)** 라는 자료구조에 저장하고 자동 전환한다.
+- 주요 구조:
+	- 각 Task의 TSS는 **GDT(Global Descriptor Table)**에 정의됨
+	  - 전환할 Task를 바꾸기 위해 **TR(Task Register)** 값을 변경
+	  - CPU가 자동으로 레지스터, 스택, PC 등을 교체
+---
 ## fork()
+### 현재 실행 중인 프로세스를 **복제(copy)** 하여,  동일한 실행 흐름을 가진 **새로운 자식 프로세스**를 생성하는 시스템 콜
+![](https://i.imgur.com/2dJo3IG.png)
+- 자식 프로세스는 부모 프로세스와 **코드(Code) 영역은 공유**합니다.
+- **데이터(Data), 스택(Stack), 힙(Heap) 영역은 각각 독립적으로 복사되어** 프로세스마다 별도로 할당됩니다.
+- 따라서 실행 흐름은 동일하더라도, 변수나 메모리 변경은 **부모와 자식 간에 서로 영향을 주지 않는다.**
+---
 ## execve()
-## Process Termination
+### 현재 process를 새로운 process로 대체하는 시스템 콜
+![left|550](https://i.imgur.com/CRKeT4p.png)
+- 현재 process를 새로운 process로 대체한다.(==pid 변경 없음==)
+	- 현재 process의 **주소공간을 완전히 교체**한다.
+---
+## fork() + execve()
+### fork(복제), execve(대체)을 조합해 다른 프로그램을 실행할 수 있다.
+![](https://i.imgur.com/KkUgjXK.png)
+### 1. 부모 process가 `fork()`를 호출하면, **거의 동일한 자식 process가 복제**된다.
+- 부모 프로세스가 `fork()`를 호출하면,  
+    → **거의 동일한 자식 프로세스가 생성**됩니다.
+- 이때 **부모와 자식은 완전히 독립된 프로세스**이며,  
+    각각 **다른 PID**를 가집니다.
+### 2. 부모 / 자식 역할 분리
+- #### 부모 process
+	-  부모 process는 `wait()`를 호출하여, 자식이 끝날 때까지 기다린다.
+- #### 자식 process
+	-  자식 process는 `execve()`를 통해 자신을 새로운 프로그램으로 덮어쓴다.
+	    - **자식 프로세스의 주소 공간이 완전히 새롭게 바뀐다.**
+	    - **PID는 그대로 유지**한다.
+---
+## Process Creation in Unix
+``` c
+#include <stdio.h>
+#include <stdlib.h>
+#include <errno.h>
+#include <unistd.h>
+
+int main(int argc, char *argv[]) {
+	int counter = 0;
+	pid_t pid;
+	
+	printf("Creating Child Process\n");
+	pid = fork();
+	if (pid < 0) { // Error in fork
+		fprintf(stderr, "fork faild, errno: %d\n", errno);
+		exit(EXIT_FAILURE);
+	}
+
+	else if (pid == 0) { // This is Child Process
+		int i;
+		printf("I am Child Process %d!\n", getpid());
+		execl("/bin/ls", "ls", "-l", NULL); // Run 'ls -l' at /bin/ls
+		
+		for (i = 0; i < 10; i++) { // Cannot be run
+			printf("Counter: %d\n", counter++);
+		}
+	}
+
+	wait(NULL);
+	return EXIT_SUCCESS;
+}
+```
+---
+# 출처
+- 숭실대학교 공영호 교수님 운영체제
+- 숭실대학교 이정현 교수님 시스템 보안
