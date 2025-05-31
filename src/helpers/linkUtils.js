@@ -12,7 +12,7 @@ function extractLinks(content) {
         link
           .slice(2, -2)
           .split("|")[0]
-          .replace(/.(md|markdown)\s?$/i, "")
+          .replace(/\.(md|markdown)\s?$/i, "")
           .replace("\\", "")
           .trim()
           .split("#")[0]
@@ -22,7 +22,7 @@ function extractLinks(content) {
         link
           .slice(6, -1)
           .split("|")[0]
-          .replace(/.(md|markdown)\s?$/i, "")
+          .replace(/\.(md|markdown)\s?$/i, "")
           .replace("\\", "")
           .trim()
           .split("#")[0]
@@ -36,9 +36,8 @@ async function getGraph(data) {
   let stemURLs = {};
   let homeAlias = "/";
 
-  const notes = data.collections.note || [];
+  const notes = data.collections?.note || [];
 
-  // ID 부여를 위해 for 루프 대신 for...of 사용
   for (let idx = 0; idx < notes.length; idx++) {
     const v = notes[idx];
     const fpath = v.filePathStem.replace("/notes/", "");
@@ -48,7 +47,7 @@ async function getGraph(data) {
       group = parts[parts.length - 2];
     }
 
-    const content = await v.template.inputContent; // 핵심 수정점
+    const content = await v.template.inputContent;
 
     nodes[v.url] = {
       id: idx,
@@ -74,7 +73,6 @@ async function getGraph(data) {
     }
   }
 
-  // 이하 로직은 그대로
   Object.values(nodes).forEach((node) => {
     let outBound = new Set();
     node.outBound.forEach((olink) => {
@@ -93,7 +91,7 @@ async function getGraph(data) {
     });
   });
 
-  Object.keys(nodes).map((k) => {
+  Object.keys(nodes).forEach((k) => {
     nodes[k].neighbors = Array.from(nodes[k].neighbors);
     nodes[k].backLinks = Array.from(nodes[k].backLinks);
     nodes[k].size = nodes[k].neighbors.length;
@@ -106,7 +104,9 @@ async function getGraph(data) {
   };
 }
 
-exports.wikiLinkRegex = wikiLinkRegex;
-exports.internalLinkRegex = internalLinkRegex;
-exports.extractLinks = extractLinks;
-exports.getGraph = getGraph;
+module.exports = {
+  wikiLinkRegex,
+  internalLinkRegex,
+  extractLinks,
+  getGraph,
+};
