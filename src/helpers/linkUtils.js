@@ -30,18 +30,26 @@ function extractLinks(content) {
   ];
 }
 
-function getGraph(data) {
+async function getGraph(data) {
   let nodes = {};
   let links = [];
   let stemURLs = {};
   let homeAlias = "/";
-  (data.collections.note || []).forEach((v, idx) => {
-    let fpath = v.filePathStem.replace("/notes/", "");
-    let parts = fpath.split("/");
+
+  const notes = data.collections.note || [];
+
+  // ID 부여를 위해 for 루프 대신 for...of 사용
+  for (let idx = 0; idx < notes.length; idx++) {
+    const v = notes[idx];
+    const fpath = v.filePathStem.replace("/notes/", "");
+    const parts = fpath.split("/");
     let group = "none";
     if (parts.length >= 3) {
       group = parts[parts.length - 2];
     }
+
+    const content = await v.template.inputContent; // 핵심 수정점
+
     nodes[v.url] = {
       id: idx,
       title: v.data.title || v.fileSlug,
@@ -51,7 +59,7 @@ function getGraph(data) {
         v.data["dg-home"] ||
         (v.data.tags && v.data.tags.indexOf("gardenEntry") > -1) ||
         false,
-      outBound: extractLinks(v.template.frontMatter.content),
+      outBound: extractLinks(content),
       neighbors: new Set(),
       backLinks: new Set(),
       noteIcon: v.data.noteIcon || process.env.NOTE_ICON_DEFAULT,
@@ -64,7 +72,9 @@ function getGraph(data) {
     ) {
       homeAlias = v.url;
     }
-  });
+  }
+
+  // 이하 로직은 그대로
   Object.values(nodes).forEach((node) => {
     let outBound = new Set();
     node.outBound.forEach((olink) => {
@@ -82,11 +92,13 @@ function getGraph(data) {
       }
     });
   });
+
   Object.keys(nodes).map((k) => {
     nodes[k].neighbors = Array.from(nodes[k].neighbors);
     nodes[k].backLinks = Array.from(nodes[k].backLinks);
     nodes[k].size = nodes[k].neighbors.length;
   });
+
   return {
     homeAlias,
     nodes,
