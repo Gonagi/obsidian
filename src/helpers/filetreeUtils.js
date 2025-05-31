@@ -112,14 +112,24 @@ function assignNested(obj, keyPath, value) {
   obj[keyPath[lastKeyIndex]] = value;
 }
 
-function getFileTree(data) {
-  const tree = {};
-  (data.collections.note || []).forEach((note) => {
-    const [meta, folders] = getPermalinkMeta(note);
-    assignNested(tree, folders, { isNote: true, ...meta });
+function getFileTree(data = {}) {
+  const notes = data.collections?.note || [];
+
+  // 이후 notes를 기반으로 파일 트리를 구성하는 로직 작성
+  // 예:
+  const tree = [];
+
+  notes.forEach((note) => {
+    // 예시로 제목과 URL만 추출
+    tree.push({
+      title: note.data.title || note.fileSlug,
+      url: note.url,
+    });
   });
-  const fileTree = sortTree(tree);
-  return fileTree;
+
+  return tree;
 }
 
-exports.getFileTree = getFileTree;
+module.exports = {
+  getFileTree,
+};
