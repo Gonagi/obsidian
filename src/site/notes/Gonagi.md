@@ -50,6 +50,7 @@
 		- [해외 출원 기술설명서](https://docs.google.com/presentation/d/1XoxPb5tSyJI2GB6fRGezKFaXICcB3cYN/edit?usp=sharing&ouid=111875955541227552351&rtpof=true&sd=true)
 - ## TripMate
 	- [[프로젝트/TripMate/관광지 페이지네이션 성능 최적화(캐시 미적용 vs Ehcache vs Redis)\|관광지 페이지네이션 성능 최적화(캐시 미적용 vs Ehcache vs Redis)]]
+	- [[프로젝트/TripMate/Swagger 문서화 개선기\|Swagger 문서화 개선기]]
 ---
 # Docker
 - [[Docker/Docker를 사용하는 이유\|Docker를 사용하는 이유]]
