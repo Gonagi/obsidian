@@ -46,7 +46,7 @@
 		- [GitHub 주소](https://github.com/Gonagi/pposonggil_v2)
 	- ### 특허
 		- [뽀송길_발명신고서](https://drive.google.com/file/d/1_fZTv2taQnOpr-6V0mWEHvOHQl5bnMbx/view?usp=sharing)
-		- [뽀송길_출원명세서_검토_의뢰서](https://drive.google.com/file/d/1d98Lok46lxkY4JbpiD3xgpX6HxliAD-H/view?usp=sharing)
+		- [뽀송길_출원명세서_검토_의뢰서](https://drive.google.com/file/d/1zlzwJs632xbQXTzPHBOILQp1A8I4aWoL/view?usp=drive_link)
 		- [해외 출원 기술설명서](https://docs.google.com/presentation/d/1XoxPb5tSyJI2GB6fRGezKFaXICcB3cYN/edit?usp=sharing&ouid=111875955541227552351&rtpof=true&sd=true)
 - ## TripMate
 	- [[프로젝트/TripMate/관광지 페이지네이션 성능 최적화(캐시 미적용 vs Ehcache vs Redis)\|관광지 페이지네이션 성능 최적화(캐시 미적용 vs Ehcache vs Redis)]]
