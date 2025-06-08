@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/Gonagi/","tags":["gardenEntry"],"created":"2025-05-31T14:25:48.663+09:00"}
+{"dg-publish":true,"permalink":"/Gonagi/","tags":["gardenEntry","gardenEntry"],"created":"2025-05-31T14:25:48.663+09:00"}
 ---
 
 # CS
@@ -37,7 +37,7 @@
 		- [[프로젝트/뽀송길/프로젝트 진행 중 겪은 문제/서울시_지리공간_데이터_만들기\|서울시_지리공간_데이터_만들기]]
 		- [[프로젝트/뽀송길/프로젝트 진행 중 겪은 문제/OSRM_실행과정_일대기\|OSRM_실행과정_일대기]]
 		- [[프로젝트/뽀송길/프로젝트 진행 중 겪은 문제/뽀송_가중치_설정_과정\|뽀송_가중치_설정_과정]]
-	- [[프로젝트/뽀송길/프로젝트 진행 중 겪은 문제/Promise_all을_이용한_기상_데이터_수집_개선기\|Promise_all을_이용한_기상_데이터_수집_개선기]]
+		- [[프로젝트/뽀송길/프로젝트 진행 중 겪은 문제/Promise_all을_이용한_기상_데이터_수집_개선기\|Promise_all을_이용한_기상_데이터_수집_개선기]]
 	- ### 산출물
 		- [뽀송길_프로젝트_보고서](https://drive.google.com/file/d/1wrz1E6c7A9nHXzTyQL8pcUO7h0W5dfZO/view?usp=sharing)
 		- [뽀송길_경진대회_보고서](https://drive.google.com/file/d/1k3UiB7mK23dokLBPTBnj6_33Zd_6Vqqt/view?usp=sharing)
