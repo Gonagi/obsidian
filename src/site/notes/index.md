@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/","tags":["gardenEntry"],"created":"2025-05-31T14:25:48.663+09:00"}
+{"dg-publish":true,"permalink":"/index/","tags":["gardenEntry","gardenEntry","gardenEntry"],"created":"2025-05-31T14:25:48.663+09:00"}
 ---
 
 # CS

@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/CS/운영체제/OS_01_Introduction/","created":"2025-01-16T16:44:18.619+09:00"}
+{"dg-publish":true,"permalink":"/CS/운영체제/OS_01_Introduction/","tags":["gardenEntry"],"created":"2025-01-16T16:44:18.619+09:00"}
 ---
 
 # 운영체제란 무엇인가?
