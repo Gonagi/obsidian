@@ -1,5 +1,10 @@
 ---
-{"dg-publish":true,"permalink":"/Gonagi/","tags":["gardenEntry","gardenEntry"],"created":"2025-05-31T14:25:48.663+09:00"}
+dg-publish: true
+dg-home: true
+permalink: /Gonagi/
+tags:
+  - gardenEntry
+created: 2025-05-31T14:25:48.663+09:00
 ---
 
 # CS
